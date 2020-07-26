@@ -4,7 +4,7 @@ require 'todo/todos.rb'
 
 module Todo
   module FileUtils
-    TODO_FILE = '~/.todos.txt'
+    TODO_FILE = File.join ENV['HOME'], '.todos.txt'
 
     private
 

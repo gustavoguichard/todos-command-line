@@ -11,6 +11,12 @@ class Todos
   end
 
   def new_task(*tasks)
+    if tasks.empty?
+      puts 'Add one todo by line...'
+      tasks = STDIN.readlines.map { |line| line.chomp }
+    end
+    raise 'You must provide some tasks' if tasks.length.zero?
+
     new_todos = tasks.map { |task| TodoItem.new(task) }
     append_todos @filename, new_todos
     puts 'Tasks added.'
