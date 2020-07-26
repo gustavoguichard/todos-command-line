@@ -4,7 +4,8 @@ require 'todo/todos.rb'
 
 module Todo
   module FileUtils
-    TODO_FILE = 'todos.txt'
+    TODO_FILE = '~/.todos.txt'
+
     private
 
     def write_todos(filename, todos, mode = 'w')
@@ -34,5 +35,4 @@ module Todo
       TodoItem.new(name, created, index, completed)
     end
   end
-
 end
