@@ -1,4 +1,5 @@
-require 'todo/version.rb'
+# frozen_string_literal: true
 
-# Add requires for other files you add to your project here, so
-# you just need to require this one file in your bin file
+require 'todo/version.rb'
+require 'todo/todos.rb'
+require 'todo/file_utils.rb'
