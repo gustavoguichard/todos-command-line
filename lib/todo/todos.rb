@@ -13,7 +13,7 @@ class Todos
   def new_task(*tasks)
     if tasks.empty?
       puts 'Add one todo by line...'
-      tasks = STDIN.readlines.map { |line| line.chomp }
+      tasks = STDIN.readlines.map(&:chomp)
     end
     raise 'You must provide some tasks' if tasks.length.zero?
 
@@ -24,12 +24,11 @@ class Todos
 
   def list(options)
     todos.sort! { |a, b| a.name <=> b.name } if options[:s] == 'name'
-    todos.each do |todo|
-      if options[:format] == 'pretty'
-        todo.pretty_print
-      else
-        todo.print_csv
-      end
+    options[:format] ||= STDOUT.tty? ? 'pretty' : 'csv'
+    if options[:format] == 'pretty'
+      todos.each(&:pretty_print)
+    else
+      todos.each(&:print_csv)
     end
   end
 
@@ -42,6 +41,7 @@ class Todos
 
   def remove(*args)
     raise 'You must provide some numbers to be removed' if args.length.zero?
+
     todos.reject! do |todo|
       should_reject = args.include? todo.index.to_s
       puts "Removing #{todo.name}" if should_reject

@@ -32,9 +32,8 @@ class App
 
   desc 'List tasks'
   command %i[list ls] do |c|
-    c.desc 'Format of the output'
+    c.desc 'Format of the output (pretty for TTY, csv otherwise)'
     c.arg_name 'csv|pretty'
-    c.default_value 'pretty'
     c.flag :format
 
     c.flag :s
