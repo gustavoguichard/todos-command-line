@@ -21,7 +21,7 @@ class TodoItem < Struct.new(:name, :created_at, :index, :completed_at)
     "#{name},#{created_at},#{completed_at}"
   end
 
-  def print
+  def pretty_print
     printf("%3d - %s\n", index, name)
     printf("        Created: %s\n", created_at)
     printf("        Completed: %s\n", completed_at) unless completed_at.nil?
