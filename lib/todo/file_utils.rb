@@ -8,7 +8,7 @@ module Todo
     private
 
     def write_todos(filename, todos, mode = 'w')
-      File.open(filename, mode) do |file|
+      File.open(filename || TODO_FILE, mode) do |file|
         todos.each do |task|
           file.puts task
         end
@@ -21,7 +21,7 @@ module Todo
 
     def read_todos(filename)
       todos = []
-      File.open(filename, 'r') do |file|
+      File.open(filename || TODO_FILE, 'r') do |file|
         file.readlines.each_with_index do |line, index|
           todos << read_todo(line, index + 1)
         end

@@ -7,7 +7,7 @@ class Todos
   include Todo::FileUtils
 
   def initialize(filename)
-    @filename = filename || TODO_FILE
+    @filename = filename
   end
 
   def new_task(*tasks)
