@@ -54,6 +54,15 @@ class App
     end
   end
 
+  desc 'Removes a todo at given number(s)'
+  arg_name 'number...'
+  command %i[remove rm] do |c|
+    c.action do |global_options, _options, args|
+      todos = Todos.new(global_options[:filename])
+      todos.remove(*args)
+    end
+  end
+
   pre do |_global, _command, _options, _args|
     true
   end

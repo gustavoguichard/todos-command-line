@@ -40,6 +40,16 @@ class Todos
     write_todos(@filename, todos)
   end
 
+  def remove(*args)
+    raise 'You must provide some numbers to be removed' if args.length.zero?
+    todos.reject! do |todo|
+      should_reject = args.include? todo.index.to_s
+      puts "Removing #{todo.name}" if should_reject
+      should_reject
+    end
+    write_todos(@filename, todos)
+  end
+
   def todos
     @todos ||= read_todos(@filename)
   end
