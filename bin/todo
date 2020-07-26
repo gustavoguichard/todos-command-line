@@ -19,11 +19,9 @@ def read_todos(filename)
     counter = 1
     file.readlines.each do |line|
       name, created, completed = read_todo line
-      printf("%3d - %s\n", counter, name)
-      printf("        Created: %s\n", created)
-      printf("        Completed: %s\n", completed) unless completed.nil?
+      complete_flag = completed ? 'DONE' : 'INCOMPLETE'
+      todos << { index: counter, name: name, complete: complete_flag, created_at: created, completed_at: completed }
       counter += 1
-      todos << name
     end
   end
   todos
@@ -64,7 +62,7 @@ class App
 
     # c.desc 'Describe a flag to new'
     # c.default_value 'default'
-    c.action do |global_options, options, args|
+    c.action do |global_options, _options, args|
       filename = global_options[:file_name] || TODO_FILE
       File.open(filename, 'a') do |file|
         args.each do |new_task|
@@ -75,18 +73,27 @@ class App
     end
   end
 
-  # desc 'Describe list here'
-  # arg_name 'Describe arguments to list here'
+  desc 'List tasks'
   command :list do |c|
+    c.desc 'Format of the output'
+    c.arg_name 'csv|pretty'
+    c.default_value 'pretty'
+    c.flag :format
+
     c.flag :s
+
     c.action do |global_options, options|
       filename = global_options[:file_name] || TODO_FILE
       todos = read_todos(filename)
-      if options[:s] == 'name'
-        todos = todos.sort { |a, b| a <=> b }
-      end
+      todos = todos.sort { |a, b| a[:name] <=> b[:name] } if options[:s] == 'name'
       todos.each do |todo|
-        puts todo
+        if options[:format] == 'pretty'
+          printf("%3d - %s\n", todo[:index], todo[:name])
+          printf("        Created: %s\n", todo[:created_at])
+          printf("        Completed: %s\n", todo[:completed_at]) unless todo[:completed_at].nil?
+        else
+          puts [todo[:index], todo[:name], todo[:complete], todo[:created_at], todo[:completed_at]].join(',')
+        end
       end
     end
   end
