@@ -31,7 +31,7 @@ class App
   end
 
   desc 'List tasks'
-  command :list do |c|
+  command %i[list ls] do |c|
     c.desc 'Format of the output'
     c.arg_name 'csv|pretty'
     c.default_value 'pretty'
