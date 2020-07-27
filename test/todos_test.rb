@@ -2,7 +2,7 @@
 
 require 'test/unit'
 require 'mocha/test_unit'
-require 'todo/todos'
+require 'todo'
 
 TMP_FILE = '/tmp/foo.txt'
 
@@ -18,7 +18,7 @@ class TodosTest < Test::Unit::TestCase
   def tests_raises_error_when_no_tasks
     STDIN.stubs(:readlines).returns([])
     ex = assert_raises RuntimeError do
-      Todos.new(TMP_FILE).new_task()
+      Todo::Todos.new(TMP_FILE).new_task()
     end
 
     expected = 'You must provide some tasks'
@@ -27,14 +27,14 @@ class TodosTest < Test::Unit::TestCase
 
   def test_working_with_stdin
     STDIN.stubs(:readlines).returns(['Foo'])
-    todos = Todos.new(TMP_FILE)
+    todos = Todo::Todos.new(TMP_FILE)
     todos.new_task()
 
     assert_match 'Foo', todos.todos.first.name
   end
 
   def test_working_with_args
-    todos = Todos.new(TMP_FILE)
+    todos = Todo::Todos.new(TMP_FILE)
     todos.new_task('Foo', 'Bar')
 
     assert_match 'Bar', todos.todos[1].name

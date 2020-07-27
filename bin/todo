@@ -27,7 +27,7 @@ class App
     c.switch :f
 
     c.action do |global_options, _options, args|
-      todos = Todos.new(global_options[:filename])
+      todos = Todo::Todos.new(global_options[:filename])
       todos.new_task(*args)
     end
   end
@@ -41,7 +41,7 @@ class App
     c.flag :s
 
     c.action do |global_options, options|
-      todos = Todos.new(global_options[:filename])
+      todos = Todo::Todos.new(global_options[:filename])
       todos.list(options)
     end
   end
@@ -50,7 +50,7 @@ class App
   arg_name 'number...'
   command :done do |c|
     c.action do |global_options, _options, args|
-      todos = Todos.new(global_options[:filename])
+      todos = Todo::Todos.new(global_options[:filename])
       todos.done(*args)
     end
   end
@@ -59,7 +59,7 @@ class App
   arg_name 'number...'
   command %i[remove rm] do |c|
     c.action do |global_options, _options, args|
-      todos = Todos.new(global_options[:filename])
+      todos = Todo::Todos.new(global_options[:filename])
       todos.remove(*args)
     end
   end
