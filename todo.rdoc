@@ -1,5 +1,59 @@
-= todo
+== todo - Manage a Todo list in your terminal
 
-Generate this with
-    todo _doc
-After you have described your command line interface
+v0.0.1
+
+=== Global Options
+=== --filename|-f Filename
+
+File to save the todos
+
+[Default Value] /Users/guga/.todos.txt
+
+
+=== --help
+Show this message
+
+
+
+=== --version
+Display the program version
+
+
+
+=== Commands
+==== Command: <tt>done  number...</tt>
+Toggles a todo completed given it's number
+
+
+==== Command: <tt>help  command</tt>
+Shows a list of commands or help for one command
+
+Gets help for the application or its commands. Can also list the commands in a way helpful to creating a bash-style completion function
+===== Options
+===== -c
+List commands one per line, to assist with shell completion
+
+
+
+==== Command: <tt>initconfig </tt>
+Initialize the config file using current global options
+
+Initializes a configuration file where you can set default options for command line flags, both globally and on a per-command basis.  These defaults override the built-in defaults and allow you to omit commonly-used command line flags when invoking this program
+===== Options
+===== --[no-]force
+force overwrite of existing config file
+
+
+
+==== Command: <tt>list|ls </tt>
+List tasks
+
+
+==== Command: <tt>new  "A todo" "Another todo"</tt>
+Creates new todos
+
+
+==== Command: <tt>remove|rm  number...</tt>
+Removes a todo at given number(s)
+
+
