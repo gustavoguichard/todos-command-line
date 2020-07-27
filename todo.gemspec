@@ -18,6 +18,8 @@ spec = Gem::Specification.new do |s|
   s.executables << 'todo'
   s.add_development_dependency('aruba')
   s.add_development_dependency('rake')
+  s.add_development_dependency('test-unit')
+  s.add_development_dependency('mocha')
   s.add_development_dependency('rdoc')
   s.add_runtime_dependency('gli', '2.19.2')
 end

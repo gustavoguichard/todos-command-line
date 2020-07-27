@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'todo/todos'
-
 module Todo
   module FileUtils
     TODO_FILE = File.join ENV['HOME'], '.todos.txt'

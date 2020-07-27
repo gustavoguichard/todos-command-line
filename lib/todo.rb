@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-require 'todo/version.rb'
-require 'todo/todos.rb'
-require 'todo/file_utils.rb'
+require 'todo/version'
+require 'todo/file_utils'
+require 'todo/todos'
+require 'todo/todo_item'
