@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'todo/todos.rb'
+require 'todo/todos'
 
 module Todo
   module FileUtils

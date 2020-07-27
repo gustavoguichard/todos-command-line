@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'todo/todo_item.rb'
+require 'todo/todo_item'
 require 'todo/file_utils'
 
 class Todos
