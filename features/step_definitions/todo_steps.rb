@@ -1,10 +1,13 @@
-Given /^the file "([^"]*)" doesn't exist$/ do |file|
+# frozen_string_literal: true
+
+Given(/^the file "([^"]*)" doesn't exist$/) do |file|
   FileUtils.rm(file) if File.exist?(file)
 end
 
-When /^I get help for "([^"]*)"$/ do |app_name|
-  @app_name = app_name
-  step %(I run `#{app_name} help`)
+Given(/^there is no task list in my home directory$/) do
+  step %(the file ".todos.txt" doesn't exist)
 end
 
-# Add more step definitions here
+Then(/^the task list should exist in my home directory$/) do
+  step %(a file named ".todos.txt" should exist)
+end
