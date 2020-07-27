@@ -1,6 +1,5 @@
 = todo
 
-Describe your project here
+A lightweight task-management app
 
 :include:todo.rdoc
-
