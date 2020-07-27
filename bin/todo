@@ -7,6 +7,8 @@ require 'todo'
 class App
   extend GLI::App
 
+  config_file File.join(ENV['HOME'], '.todos.rc.yaml')
+
   program_desc 'Manage a Todo list in your terminal'
 
   version Todo::VERSION
