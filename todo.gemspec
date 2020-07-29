@@ -22,4 +22,6 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('mocha')
   s.add_development_dependency('rdoc')
   s.add_runtime_dependency('gli', '2.19.2')
+  s.add_runtime_dependency('rainbow')
+  s.add_runtime_dependency('terminal-table')
 end

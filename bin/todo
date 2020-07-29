@@ -3,6 +3,7 @@
 
 require 'gli'
 require 'todo'
+require 'rainbow'
 
 class App
   extend GLI::App
@@ -34,15 +35,26 @@ class App
 
   desc 'List tasks'
   command %i[list ls] do |c|
+    output_formats = {
+      'csv' => Todo::Format::CSV.new,
+      'pretty' => Todo::Format::Pretty.new,
+      'table' => Todo::Format::Table.new
+    }
+
     c.desc 'Format of the output (pretty for TTY, csv otherwise)'
-    c.arg_name 'csv|pretty'
+    c.arg_name output_formats.keys.join('|')
     c.flag :format
+
+    c.desc 'Use colors'
+    c.switch :color, default_value: true
 
     c.flag :s
 
     c.action do |global_options, options|
+      Rainbow.enabled = options[:color]
+      options[:format] ||= STDOUT.tty? ? 'pretty' : 'csv'
       todos = Todo::Todos.new(global_options[:filename])
-      todos.list(options)
+      todos.list(options, output_formats[options[:format]])
     end
   end
 

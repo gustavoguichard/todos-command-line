@@ -20,14 +20,12 @@ module Todo
       puts 'Tasks added.'
     end
 
-    def list(options)
+    def list(options, formatter)
       todos.sort! { |a, b| a.name <=> b.name } if options[:s] == 'name'
-      options[:format] ||= STDOUT.tty? ? 'pretty' : 'csv'
-      if options[:format] == 'pretty'
-        todos.each(&:pretty_print)
-      else
-        todos.each(&:print_csv)
+      todos.each do |todo|
+        formatter.format(todo)
       end
+      formatter.after
     end
 
     def done(*args)

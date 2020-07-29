@@ -21,15 +21,5 @@ module Todo
     def to_s
       "#{name},#{created_at},#{completed_at}"
     end
-
-    def pretty_print
-      printf("%3d - %s\n", index, name)
-      printf("        Created: %s\n", created_at)
-      printf("        Completed: %s\n", completed_at) unless completed_at.nil?
-    end
-
-    def print_csv
-      puts [index, name, complete_flag, created_at, completed_at].join(',')
-    end
   end
 end

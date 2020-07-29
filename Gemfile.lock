@@ -3,6 +3,8 @@ PATH
   specs:
     todo (0.0.1)
       gli (= 2.19.2)
+      rainbow
+      terminal-table
 
 GEM
   remote: https://rubygems.org/
@@ -70,6 +72,7 @@ GEM
       middleware
       thor
       thread_safe
+    rainbow (3.0.0)
     rake (13.0.1)
     rdoc (6.2.1)
     rspec-expectations (3.9.2)
@@ -78,12 +81,15 @@ GEM
     rspec-support (3.9.3)
     sys-uname (1.2.1)
       ffi (>= 1.0.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     test-unit (3.2.9)
       power_assert
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    unicode-display_width (1.7.0)
     zeitwerk (2.4.0)
 
 PLATFORMS
